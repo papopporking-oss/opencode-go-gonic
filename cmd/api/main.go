@@ -1,11 +1,9 @@
 package main
 
 import (
-	"go-gin-standard/internal/controller/erpcustomersbycustomercodeget"
-	"go-gin-standard/internal/controller/erpproductsbylikeproductcodeorproductnameget"
-	"go-gin-standard/internal/controller/templatedbqueryget"
-	"go-gin-standard/internal/controller/testget"
-	"go-gin-standard/internal/controller/testpost"
+	"go-gin-standard/internal/controller/template_dbquery_get"
+	"go-gin-standard/internal/controller/template_get"
+	"go-gin-standard/internal/controller/template_post"
 	"go-gin-standard/internal/database/pgopencode"
 	"go-gin-standard/internal/database/pgopencode2"
 	"go-gin-standard/internal/database/tspgopencode2"
@@ -48,20 +46,17 @@ func main() {
 		})
 	})
 
-	// Test
-	router.GET("/api/testget", testget.Handler)
-	router.GET("/api/testpost", testpost.Handler)
-	// Test Logger middleware
-	router.GET("/api/testmiddleware", logger.Logger(), testpost.Handler)
+	// Template
+	router.GET("/api/template-get", template_get.Handler)
+	router.GET("/api/template-post", template_post.Handler)
+	router.GET("/api/template-post/middleware", logger.Logger(), template_post.Handler)
 
 	// AI
-	router.GET("/api/test/ai/template-query", templatedbqueryget.Handler)
-	router.GET("/api/test/ai/erp-products-by-like-product-code-or-product-name", erpproductsbylikeproductcodeorproductnameget.Handler)
-	router.GET("/api/test/ai/erp-customers-by-customer-code", erpcustomersbycustomercodeget.Handler)
+	router.GET("/api/test/ai/template-dbquery", template_dbquery_get.Handler)
 
 	// listens on 0.0.0.0:8080 by default
 	// router.Run()
 
 	// https
-	router.RunTLS(":8443", "/home/papop/certificate/opencode-papop-ai-agent/opencode-papop-ai-agent.crt", "/home/papop/certificate/opencode-papop-ai-agent/opencode-papop-ai-agent.key")
+	router.RunTLS(":13002", "/home/papop/certificate/opencode53.papopporking.com/opencode53.papopporking.com.crt", "/home/papop/certificate/opencode53.papopporking.com/opencode53.papopporking.com.key")
 }

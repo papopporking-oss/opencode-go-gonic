@@ -1,4 +1,4 @@
-package testpost
+package template_post
 
 import (
 	"net/http"
@@ -10,7 +10,8 @@ import (
 
 func Handler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"method": "POST",
+		"status": "OK",
+		"message": "OK",
 		"data":   service2.Hello(),
 	})
 }

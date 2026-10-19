@@ -1,4 +1,4 @@
-package templatedbqueryget
+package template_dbquery_get
 
 import (
 	"context"

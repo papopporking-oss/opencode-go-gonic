@@ -1,4 +1,4 @@
-package testget
+package template_get
 
 import (
 	"net/http"
@@ -10,7 +10,8 @@ import (
 
 func Handler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"method": "GET",
+		"status": "OK",
+		"message": "OK",
 		"data":   service1.Hello(),
 	})
 }
